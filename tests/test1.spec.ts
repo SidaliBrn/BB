@@ -1,0 +1,34 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://www.campusfrance.org/fr');
+  await page.getByRole('button', { name: 'Tout refuser' }).click();
+  await page.getByText('Connexion').click();
+  await page.getByRole('link', { name: 'Je crée mon compte' }).click();
+  await page.getByPlaceholder('monadresse@domaine.com').click();
+  await page.getByPlaceholder('monadresse@domaine.com').fill('AAAA');
+  await page.getByRole('textbox', { name: 'Mon mot de passe*' }).click();
+  await page.getByRole('textbox', { name: 'Mon mot de passe*' }).fill('BBBBBB');
+  await page.getByLabel('Confirmer le mot de passe').click();
+  await page.getByLabel('Confirmer le mot de passe').fill('BBBBBBB');
+  await page.getByText('Mr').click();
+  await page.getByLabel('Nom', { exact: true }).click();
+  await page.getByLabel('Nom', { exact: true }).fill('DFD');
+  await page.getByLabel('Prénom').fill('D');
+  await page.getByLabel('Prénom').click();
+  await page.getByLabel('Prénom').fill('DFDFF');
+  await page.locator('div').filter({ hasText: /^- Choisir une valeur -$/ }).nth(1).click();
+  await page.getByText('-Angola').click();
+  await page.getByLabel('Pays de nationalité (valeur 1)').click();
+  await page.getByLabel('Pays de nationalité (valeur 1)').fill('AL');
+  await page.locator('#ui-id-5').click();
+  await page.getByLabel('Pays de nationalité (valeur 1)').fill('Algérie (75)S');
+  await page.getByLabel('Code postal').fill('D');
+  await page.getByLabel('Code postal').click();
+  await page.getByLabel('Code postal').fill('DSD');
+  await page.getByLabel('Ville').click();
+  await page.getByLabel('Ville').fill('DSD');
+  await page.getByLabel('Téléphone').fill('S');
+  await page.getByLabel('Téléphone').click();
+  await page.getByLabel('Téléphone').fill('SDSDSDSDSDS');
+});
